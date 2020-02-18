@@ -1,10 +1,10 @@
 import React from "react";
 import "./App.css";
 
-import avatar from "./assets/avatar.png";
+import TechList from "./components/TechList";
 
 function App() {
-  return <img src={avatar} />;
+  return <TechList />;
 }
 
 export default App;
