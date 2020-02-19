@@ -4,7 +4,7 @@ import TechItem from "./TechItem";
 
 class TechList extends Component {
   state = {
-    techs: ["NodeJs", "ReactJs", "React Native"],
+    techs: [],
     newTech: ""
   };
 
@@ -23,6 +23,19 @@ class TechList extends Component {
   handleDelete = tech => {
     this.setState({ techs: this.state.techs.filter(t => t !== tech) });
   };
+
+  componentDidUpdate(_, prevState) {
+    if (prevState.techs !== this.state.techs) {
+      localStorage.setItem("techs", JSON.stringify(this.state.techs));
+    }
+  }
+
+  componentDidMount() {
+    const techs = localStorage.getItem("techs");
+    if (techs) {
+      this.setState({ techs: JSON.parse(techs) });
+    }
+  }
 
   render() {
     return (
